@@ -3,7 +3,10 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 const ProductItem = ({ item, onPressItem }) => {
   return (
-    <TouchableOpacity style={styles.productContainer} onPress={onPressItem}>
+    <TouchableOpacity
+      style={styles.productContainer}
+      onPress={() => onPressItem(item)}
+    >
       <View style={styles.productImageContainer}>
         <Image source={{ uri: item.image }} style={styles.productImage} />
       </View>

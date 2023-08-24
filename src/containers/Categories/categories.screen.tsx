@@ -1,10 +1,28 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
+import CategoryItem from '../../components/CategoryItem';
+import styles from './categories.styles';
 
 const CategoriesScreen = ({ handlers }) => {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
+  const { categories, isLoading, handleSelectCategory } = handlers;
+
+  const numColumns = 3;
+
+  return isLoading ? (
+    <View style={styles.loading}>
+      <Text>Carregando...</Text>
+    </View>
+  ) : (
+    <View style={styles.container}>
+      <FlatList
+        data={categories}
+        renderItem={({ item }) => (
+          <CategoryItem item={item} onPressItem={handleSelectCategory} />
+        )}
+        keyExtractor={(item) => item}
+        numColumns={numColumns}
+        columnWrapperStyle={styles.columnWrapper}
+      />
     </View>
   );
 };

@@ -6,14 +6,31 @@ import HomeController from '../containers/Home/home.controller';
 import ProfileController from '../containers/Profile/profile.controller';
 import CartController from '../containers/Cart/cart.controller';
 import CategoriesController from '../containers/Categories/categories.controller';
+import ProductListController from '../containers/ProductList/productList.controller';
+// import ProductController from '../containers/Product/product.controller';
 import { Ionicons } from '@expo/vector-icons';
 
-const Stack = createStackNavigator();
+const CategoryStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const CategoryStackNavigator = () => {
+  return (
+    <CategoryStack.Navigator>
+      <CategoryStack.Screen
+        name="Categories"
+        component={CategoriesController}
+      />
+      <CategoryStack.Screen
+        name="ProductList"
+        component={ProductListController}
+      />
+      {/* <CategoryStack.Screen name="Product" component={ProductController} /> */}
+    </CategoryStack.Navigator>
+  );
+};
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name="Home"
         component={HomeController}
@@ -46,7 +63,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Categories"
-        component={CategoriesController}
+        component={CategoryStackNavigator}
         options={{
           tabBarLabel: 'Categories',
           tabBarIcon: ({ color, size }) => (
