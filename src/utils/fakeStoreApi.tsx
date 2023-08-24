@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { API_URL } from '../config';
-import { CartType } from './types';
 
 const instance = axios.create({
   baseURL: API_URL,
@@ -51,36 +50,10 @@ const getAllCategories = async () => {
   }
 };
 
-const getCategory = async (name: string) => {
+const getProductsInCategory = async (name: string) => {
   try {
-    const response = await instance.get(
-      `${API_URL}/products/categories/${name}`
-    );
-    return response.data;
-  } catch (error: unknown) {
-    throw error;
-  }
-};
+    const response = await instance.get(`${API_URL}/products/category/${name}`);
 
-const getCart = async (userId: number) => {
-  if (!Number.isInteger(userId)) {
-    throw new Error('Invalid userId. Expected an integer.');
-  }
-
-  try {
-    const response = await instance.get(`${API_URL}/carts?userId=${userId}`);
-    return response.data;
-  } catch (error: unknown) {
-    throw error;
-  }
-};
-
-const updateCart = async (userId: number, data: CartType) => {
-  try {
-    const response = await instance.put(
-      `${API_URL}/carts?userId=${userId}`,
-      data
-    );
     return response.data;
   } catch (error: unknown) {
     throw error;
@@ -92,7 +65,5 @@ export {
   getAllProducts,
   getProduct,
   getAllCategories,
-  getCategory,
-  getCart,
-  updateCart,
+  getProductsInCategory,
 };

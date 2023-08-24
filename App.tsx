@@ -3,19 +3,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import FlashMessage from 'react-native-flash-message';
-
 import TabNavigator from './src/navigation/TabNavigator';
-
-const Stack = createNativeStackNavigator();
+import { CartProvider } from './src/context/cartContext';
 
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <TabNavigator />
-      </NavigationContainer>
-      <FlashMessage position="top" />
-    </SafeAreaProvider>
+    <CartProvider>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <TabNavigator />
+        </NavigationContainer>
+        <FlashMessage position="top" />
+      </SafeAreaProvider>
+    </CartProvider>
   );
 };
 
