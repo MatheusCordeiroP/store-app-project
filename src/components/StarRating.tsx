@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const StarRatingComponent = ({
+const StarRating = ({
   count,
   rate,
   color = '#e4d323',
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StarRatingComponent;
+export default StarRating;
