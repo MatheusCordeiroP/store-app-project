@@ -76,6 +76,7 @@ const ProductController = ({ route, navigation }) => {
 
   const handleGoToProduct = (product: any) => {
     setRecommendations([]);
+    setSelectedQuantity(0);
     navigation.navigate('Product', {
       selectedProduct: product,
     });
