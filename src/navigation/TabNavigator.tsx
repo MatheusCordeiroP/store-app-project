@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import HomeStackNavigator from './HomeStackNavigator';
-// import ProfileStackNavigator from './ProfileStackNavigator';
 import CartStackNavigator from './CartStackNavigator';
 import CategoryStackNavigator from './CategoryStackNavigator';
 
@@ -22,16 +21,6 @@ const TabNavigator = () => {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="ProfileTab"
-        component={ProfileStackNavigator}
-        options={{
-          tabBarLabel: 'Perfil',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" color={color} size={size} />
-          ),
-        }}
-      /> */}
       <Tab.Screen
         name="CartTab"
         component={CartStackNavigator}
