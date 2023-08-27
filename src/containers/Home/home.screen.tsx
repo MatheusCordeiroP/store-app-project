@@ -1,15 +1,26 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
+import ProductItem from '../../components/ProductItem';
+import styles from './home.styles';
 
 const HomeScreen = ({ handlers }) => {
-  const { navigation } = handlers;
+  const { products, isLoadingProducts, handleSelectProduct } = handlers;
 
-  return (
+  const numColumns = 2;
+
+  return isLoadingProducts ? (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
+      <Text>Carregando...</Text>
+    </View>
+  ) : (
+    <View style={styles.container}>
+      <FlatList
+        data={products}
+        renderItem={({ item }) => (
+          <ProductItem item={item} onPressItem={handleSelectProduct} />
+        )}
+        keyExtractor={(item) => item.id}
+        numColumns={numColumns}
       />
     </View>
   );

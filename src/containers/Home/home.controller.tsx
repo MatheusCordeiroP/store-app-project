@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import HomeScreen from './home.screen';
-import { useNavigation } from '@react-navigation/native';
+import { getAllProducts } from '../../utils/fakeStoreApi';
 
-const HomeController = ({}) => {
-  const navigation = useNavigation();
+const HomeController = ({ route, navigation }) => {
+  const [products, setProducts] = useState([]);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
 
-  const handlers = { navigation };
+  const fetchAllProducts = async () => {
+    const products = await getAllProducts(30);
+
+    setProducts(products);
+    setIsLoadingProducts(false);
+  };
+
+  useEffect(() => {
+    fetchAllProducts();
+  }, []);
+
+  const handleSelectProduct = (product: any) => {
+    navigation.navigate('Product', {
+      selectedProduct: product,
+    });
+  };
+
+  const handlers = {
+    products,
+    isLoadingProducts,
+    handleSelectProduct,
+  };
+
   return <HomeScreen handlers={handlers} />;
 };
 
