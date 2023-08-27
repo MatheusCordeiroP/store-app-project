@@ -33,28 +33,33 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   quantityPicker: {
+    height: 50,
     width: 120,
     marginRight: 10,
   },
+  recommendationsContainer: {
+    paddingBottom: 32,
+  },
   recommendationsTitle: {
-    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 12,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  recommendedProductContainer: {
-    width: 150,
-    marginRight: 10,
-  },
-  recommendedProductImage: {
+  grayLine: {
     width: '100%',
-    height: 150,
-    marginBottom: 5,
+    height: 4,
+    backgroundColor: '#ccc',
+    marginVertical: 16,
   },
-  recommendedProductTitle: {
-    fontSize: 14,
-  },
-  recommendedProductPrice: {
+  loadingText: {
+    textAlign: 'center',
+    marginTop: 12,
+    fontSize: 18,
     fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#bbb',
   },
 });
 export default styles;

@@ -1,14 +1,15 @@
 import React from 'react';
-import { View, Text, Image, Button, ScrollView, FlatList } from 'react-native';
+import { View, Text, Image, ScrollView, FlatList } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import StarRating from '../../components/StarRating';
 import ProductAddedModal from '../../components/ProductAddedModal';
+import CustomButton from '../../components/CustomButton';
+import RecommendedProductItem from '../../components/RecommendedProductItem';
 import styles from './product.styles';
 
 const ProductScreen = ({ handlers }) => {
   const {
     product,
-    isLoading,
     recommendations,
     selectedQuantity,
     setSelectedQuantity,
@@ -16,6 +17,7 @@ const ProductScreen = ({ handlers }) => {
     isModalVisible,
     handleCloseModal,
     handleGoToCart,
+    handleGoToProduct,
   } = handlers;
 
   const quantityArray = [];
@@ -23,11 +25,7 @@ const ProductScreen = ({ handlers }) => {
     quantityArray.push(i?.toString());
   }
 
-  return !isLoading ? (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Carregando...</Text>
-    </View>
-  ) : (
+  return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>{product.title}</Text>
       <StarRating count={product.rating.count} rate={product.rating.rate} />
@@ -46,6 +44,7 @@ const ProductScreen = ({ handlers }) => {
         <Picker
           style={styles.quantityPicker}
           selectedValue={selectedQuantity}
+          itemStyle={{ height: 44 }}
           onValueChange={(itemValue, itemIndex) => {
             setSelectedQuantity(itemValue);
           }}
@@ -54,26 +53,38 @@ const ProductScreen = ({ handlers }) => {
             return <Picker.Item label={item} value={index} key={index} />;
           })}
         </Picker>
-        <Button title="Add to Cart" onPress={addToCart} />
+        <CustomButton text="Adicionar ao carrinho" onPressItem={addToCart} />
       </View>
 
-      {recommendations && recommendations.length > 0 ? (
-        <View>
-          <Text style={styles.recommendationsTitle}>Recommended Products</Text>
-          <FlatList
-            data={recommendations}
-            renderItem={({ item }) => <RecommendedProductItem item={item} />}
-            keyExtractor={(item) => item.id?.toString()}
-            horizontal
-          />
-        </View>
-      ) : (
-        <View
-          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-        >
-          <Text>Carregando...</Text>
-        </View>
-      )}
+      <View style={styles.grayLine} />
+
+      <View style={styles.recommendationsContainer}>
+        {recommendations && recommendations.length > 0 ? (
+          <View>
+            <Text style={styles.recommendationsTitle}>
+              Recomendações para você
+            </Text>
+            <FlatList
+              data={recommendations}
+              renderItem={({ item }) => (
+                <RecommendedProductItem
+                  item={item}
+                  handleGoToProduct={() => handleGoToProduct(item)}
+                />
+              )}
+              keyExtractor={(item) => item.id?.toString()}
+              horizontal
+            />
+          </View>
+        ) : (
+          <View
+            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+          >
+            <Text style={styles.loadingText}>Carregando...</Text>
+          </View>
+        )}
+      </View>
+
       <ProductAddedModal
         visible={isModalVisible}
         onClose={handleCloseModal}
@@ -82,18 +93,5 @@ const ProductScreen = ({ handlers }) => {
     </ScrollView>
   );
 };
-
-const RecommendedProductItem = ({ item }) => (
-  <View style={styles.recommendedProductContainer}>
-    <Image
-      source={{ uri: item.image }}
-      style={styles.recommendedProductImage}
-    />
-    <Text style={styles.recommendedProductTitle} numberOfLines={2}>
-      {item.title}
-    </Text>
-    <Text style={styles.recommendedProductPrice}>${item.price.toFixed(2)}</Text>
-  </View>
-);
 
 export default ProductScreen;

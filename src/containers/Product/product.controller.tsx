@@ -8,7 +8,6 @@ const ProductController = ({ route, navigation }) => {
   const { cartState, dispatch: dispatchCart } = useCartContext();
 
   const [recommendations, setRecommendations] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [selectedQuantity, setSelectedQuantity] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -75,13 +74,19 @@ const ProductController = ({ route, navigation }) => {
     navigation.navigate('CartTab', {});
   };
 
+  const handleGoToProduct = (product: any) => {
+    setRecommendations([]);
+    navigation.navigate('Product', {
+      selectedProduct: product,
+    });
+  };
+
   useEffect(() => {
     fetchProductsInCategory();
-  }, []);
+  }, [route]);
 
   const handlers = {
     product: route.params?.selectedProduct,
-    isLoading,
     recommendations,
     selectedQuantity,
     setSelectedQuantity,
@@ -89,6 +94,7 @@ const ProductController = ({ route, navigation }) => {
     isModalVisible,
     handleCloseModal,
     handleGoToCart,
+    handleGoToProduct,
   };
 
   return <ProductScreen handlers={handlers} />;
