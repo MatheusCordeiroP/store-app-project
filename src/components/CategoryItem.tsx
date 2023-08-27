@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   categoryImage: {
-    width: '100%',
+    width: 110,
     height: 110,
     marginBottom: 5,
   },
