@@ -1,18 +1,10 @@
 import React, { createContext, useReducer, useContext, ReactNode } from 'react';
-
-type CartItem = {
-  productId: number;
-  quantity: number;
-};
-
-type CartAction =
-  | { type: 'ADD_TO_CART'; payload: CartItem }
-  | { type: 'REMOVE_FROM_CART'; productId: number };
-
-type CartContextType = {
-  cartState: CartItem[];
-  dispatch: React.Dispatch<CartAction>;
-};
+import {
+  CartItem,
+  CartAction,
+  CartContextType,
+  CartProviderProps,
+} from '../utils/types';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -20,7 +12,7 @@ const cartReducer = (state: CartItem[], action: CartAction): CartItem[] => {
   switch (action.type) {
     case 'ADD_TO_CART':
       const existingProductIndex = state.findIndex(
-        (item) => item.productId === action.payload.productId
+        (item) => item.id === action.payload.id
       );
 
       if (existingProductIndex !== -1) {
@@ -31,14 +23,10 @@ const cartReducer = (state: CartItem[], action: CartAction): CartItem[] => {
         return [...state, action.payload];
       }
     case 'REMOVE_FROM_CART':
-      return state.filter((item) => item.productId !== action.productId);
+      return state.filter((item) => item.id !== action.id);
     default:
       return state;
   }
-};
-
-type CartProviderProps = {
-  children: ReactNode;
 };
 
 const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
