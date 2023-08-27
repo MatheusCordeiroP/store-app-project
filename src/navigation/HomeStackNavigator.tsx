@@ -12,11 +12,17 @@ const HomeStack = createStackNavigator();
 const HomeStackNavigator = () => {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={HomeController} />
-      <HomeStack.Screen name="Cart" component={CartController} />
-      <HomeStack.Screen name="Categories" component={CategoriesController} />
+      <HomeStack.Screen
+        name="Home"
+        component={HomeController}
+        options={{ title: 'Principal' }}
+      />
       <HomeStack.Screen name="ProductList" component={ProductListController} />
-      <HomeStack.Screen name="Product" component={ProductController} />
+      <HomeStack.Screen
+        name="Product"
+        component={ProductController}
+        options={{ title: 'Produto' }}
+      />
     </HomeStack.Navigator>
   );
 };

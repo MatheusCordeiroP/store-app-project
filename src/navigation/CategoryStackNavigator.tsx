@@ -14,13 +14,18 @@ const CategoryStackNavigator = () => {
       <CategoryStack.Screen
         name="Categories"
         component={CategoriesController}
+        options={{ title: 'Categorias' }}
       />
       <CategoryStack.Screen
         name="ProductList"
         component={ProductListController}
+        options={{ title: 'Produtos' }}
       />
-      <CategoryStack.Screen name="Product" component={ProductController} />
-      <CategoryStack.Screen name="Cart" component={CartController} />
+      <CategoryStack.Screen
+        name="Product"
+        component={ProductController}
+        options={{ title: 'Detalhes' }}
+      />
     </CategoryStack.Navigator>
   );
 };

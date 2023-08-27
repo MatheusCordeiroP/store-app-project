@@ -2,11 +2,10 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import CategoryStackNavigator from './CategoryStackNavigator';
 import HomeStackNavigator from './HomeStackNavigator';
-
-import ProfileController from '../containers/Profile/profile.controller';
-import CartController from '../containers/Cart/cart.controller';
+// import ProfileStackNavigator from './ProfileStackNavigator';
+import CartStackNavigator from './CartStackNavigator';
+import CategoryStackNavigator from './CategoryStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,40 +13,40 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
-        name="HomeStack"
+        name="HomeTab"
         component={HomeStackNavigator}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Principal',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" color={color} size={size} />
           ),
         }}
       />
-      <Tab.Screen
-        name="Profile"
-        component={ProfileController}
+      {/* <Tab.Screen
+        name="ProfileTab"
+        component={ProfileStackNavigator}
         options={{
-          tabBarLabel: 'Profile',
+          tabBarLabel: 'Perfil',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" color={color} size={size} />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
-        name="Cart"
-        component={CartController}
+        name="CartTab"
+        component={CartStackNavigator}
         options={{
-          tabBarLabel: 'Cart',
+          tabBarLabel: 'Carrinho',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="cart" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="CategoryStack"
+        name="CategoryTab"
         component={CategoryStackNavigator}
         options={{
-          tabBarLabel: 'Categories',
+          tabBarLabel: 'Categorias',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="grid" color={color} size={size} />
           ),

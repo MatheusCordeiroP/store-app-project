@@ -15,8 +15,8 @@ const get = async (url: string) => {
   }
 };
 
-const getAllProducts = async (limit: number, offset: number) => {
-  if (!Number.isInteger(limit) || !Number.isInteger(offset)) {
+const getAllProducts = async (limit: number) => {
+  if (!Number.isInteger(limit)) {
     throw new Error('Invalid limit or offset. Expected an integer.');
   }
 
