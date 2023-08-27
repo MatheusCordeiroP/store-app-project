@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -13,14 +13,12 @@ import CustomButton from './CustomButton';
 
 const CartItem = ({
   item,
-  itemToEdit,
-  setItemToEdit,
   addItemToCart,
   subtractItemFromCart,
   changeItemInCart,
   removeItemFromCart,
 }) => {
-  var quantity = item.quantity;
+  const [itemEdit, setItemEdit] = useState({ id: 0, quantity: 0 });
 
   return (
     <View style={styles.itemContainer}>
@@ -40,7 +38,9 @@ const CartItem = ({
           />
           <TouchableOpacity
             style={styles.quantityInput}
-            onPress={() => setItemToEdit(true)}
+            onPress={() => {
+              setItemEdit({ id: item.id, quantity: item.quantity });
+            }}
           >
             <TextInput
               value={item.quantity?.toString()}
@@ -66,13 +66,15 @@ const CartItem = ({
         />
       </View>
       <ChangeValueModal
-        baseValue={quantity}
-        visible={itemToEdit}
-        onClose={() => setItemToEdit(false)}
-        onFinish={(newQuantity) => {
-          quantity = parseInt(newQuantity);
-          changeItemInCart(item.id, parseInt(newQuantity));
-          setItemToEdit(false);
+        itemId={itemEdit.id}
+        baseValue={itemEdit.quantity}
+        visible={itemEdit.id != 0}
+        onClose={() => {
+          setItemEdit({ id: 0, quantity: 0 });
+        }}
+        onFinish={({ id, newQuantity }) => {
+          changeItemInCart(id, parseInt(newQuantity));
+          setItemEdit({ id: 0, quantity: 0 });
         }}
       />
     </View>

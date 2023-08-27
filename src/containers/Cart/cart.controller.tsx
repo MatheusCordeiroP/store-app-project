@@ -5,7 +5,6 @@ import { CartItem } from '../../utils/types';
 
 const CartController = () => {
   const { cartState, dispatch: dispatchCart } = useCartContext();
-  const [itemToEdit, setItemToEdit] = useState(-1);
   const [removeModalVisible, setRemoveModalVisible] = useState(false);
   const [productToRemove, setProductToRemove] = useState({});
 
@@ -68,8 +67,6 @@ const CartController = () => {
 
   const handlers = {
     cartState,
-    itemToEdit,
-    setItemToEdit,
     addItemToCart,
     subtractItemFromCart,
     changeItemInCart,

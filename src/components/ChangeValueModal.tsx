@@ -8,12 +8,18 @@ import {
   StyleSheet,
 } from 'react-native';
 
-const ChangeValueModal = ({ baseValue, visible, onClose, onFinish }) => {
+const ChangeValueModal = ({
+  itemId,
+  baseValue,
+  visible,
+  onClose,
+  onFinish,
+}) => {
   const [value, setValue] = useState(baseValue?.toString());
 
   useEffect(() => {
     setValue(baseValue?.toString());
-  }, [baseValue]);
+  }, [itemId, baseValue]);
 
   const handleChangeValue = (e) => {
     const numericValue = e.replace(/\D/g, '');
@@ -40,7 +46,9 @@ const ChangeValueModal = ({ baseValue, visible, onClose, onFinish }) => {
                 styles.updateButton,
                 (value <= 0 || value == '') && { backgroundColor: '#cccccc' },
               ]}
-              onPress={() => onFinish(value)}
+              onPress={() => {
+                onFinish({ id: itemId, newQuantity: value });
+              }}
               disabled={value <= 0 || value == ''}
             >
               <Text style={[styles.buttonText]}>Atualizar</Text>
