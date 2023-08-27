@@ -19,9 +19,9 @@ const ProductListController = ({ route, navigation }) => {
   }, []);
 
   const handleSelectProduct = (product: any) => {
-    // navigation.navigate('Product', {
-    //   selectedProduct: product,
-    // });
+    navigation.navigate('Product', {
+      selectedProduct: product,
+    });
   };
 
   const handlers = {
