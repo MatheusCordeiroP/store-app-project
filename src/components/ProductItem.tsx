@@ -35,8 +35,10 @@ const styles = StyleSheet.create({
   productImage: {
     width: 80,
     height: 80,
-    resizeMode: 'cover',
+    borderWidth: 1,
+    borderColor: '#f2f2f2',
     borderRadius: 8,
+    resizeMode: 'cover',
   },
   productName: {
     fontSize: 14,

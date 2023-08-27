@@ -26,7 +26,7 @@ const CartItem = ({
         <Image source={{ uri: item.image }} style={styles.cartItemImage} />
         <View style={styles.cartItemDetails}>
           <Text style={styles.cartItemName}>{item.title}</Text>
-          <Text style={styles.cartItemPrice}>$ {item.price}</Text>
+          <Text style={styles.cartItemPrice}>${item.price.toFixed(2)}</Text>
         </View>
       </View>
       <View style={styles.buttonsGroup}>

@@ -21,16 +21,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 5,
   },
-  offerContainer: {
-    backgroundColor: 'red',
-    paddingVertical: 4,
-    paddingHorizontal: 8,
-    borderRadius: 8,
-  },
-  offerText: {
-    color: 'white',
-    fontWeight: 'bold',
+  loadingText: {
     textAlign: 'center',
+    marginTop: 12,
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#888',
   },
 });
 

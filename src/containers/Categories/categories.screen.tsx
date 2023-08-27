@@ -10,7 +10,7 @@ const CategoriesScreen = ({ handlers }) => {
 
   return isLoading ? (
     <View style={styles.loading}>
-      <Text>Carregando...</Text>
+      <Text style={styles.loadingText}>Carregando...</Text>
     </View>
   ) : (
     <View style={styles.container}>

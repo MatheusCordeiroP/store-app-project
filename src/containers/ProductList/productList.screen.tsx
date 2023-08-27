@@ -10,7 +10,7 @@ const ProductListScreen = ({ handlers }) => {
 
   return isLoadingProducts ? (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Carregando...</Text>
+      <Text style={styles.loadingText}>Carregando...</Text>
     </View>
   ) : (
     <View style={styles.container}>

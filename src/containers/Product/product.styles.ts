@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#bbb',
+    color: '#888',
   },
 });
 export default styles;

@@ -13,6 +13,14 @@ const styles = StyleSheet.create({
   columnWrapper: {
     justifyContent: 'space-between',
   },
+  loadingText: {
+    textAlign: 'center',
+    marginTop: 12,
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#888',
+  },
 });
 
 export default styles;

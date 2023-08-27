@@ -5,6 +5,14 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
+  loadingText: {
+    textAlign: 'center',
+    marginTop: 12,
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#888',
+  },
 });
 
 export default styles;

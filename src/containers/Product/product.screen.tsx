@@ -33,11 +33,8 @@ const ProductScreen = ({ handlers }) => {
       <Image source={{ uri: product.image }} style={styles.image} />
       <Text style={styles.description}>{product.description}</Text>
       <Text style={styles.price}>
-        <Text style={styles.currency}>$</Text>{' '}
-        {product.price.toLocaleString('pt-BR', {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}
+        <Text style={styles.currency}>$</Text>
+        {product.price.toFixed(2)}
       </Text>
       <View style={styles.addToCartContainer}>
         <Text>Qtd.:</Text>
